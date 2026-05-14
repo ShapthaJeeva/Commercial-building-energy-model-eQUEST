@@ -1,0 +1,4608 @@
+INPUT ..
+
+
+$ ---------------------------------------------------------
+$              Abort, Diagnostics
+$ ---------------------------------------------------------
+
+
+
+
+$ ---------------------------------------------------------
+$              Global Parameters
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Title, Run Periods, Design Days, Holidays
+$ ---------------------------------------------------------
+
+TITLE           
+   LINE-1           = *Office Building - Colombo*
+   ..
+
+"Entire Year" = RUN-PERIOD-PD
+   BEGIN-MONTH      = 1
+   BEGIN-DAY        = 1
+   BEGIN-YEAR       = 2026
+   END-MONTH        = 12
+   END-DAY          = 31
+   END-YEAR         = 2026
+   ..
+
+
+"Standard US Holidays" = HOLIDAYS        
+   LIBRARY-ENTRY "US"
+   ..
+
+
+$ ---------------------------------------------------------
+$              Compliance Data
+$ ---------------------------------------------------------
+
+"Compliance Data" = COMPLIANCE      
+   C-PERMIT-SCOPE   = 0
+   C-PROJ-NAME      = *Office Building - Colombo*
+   C-BUILDING-TYPE  = 0
+   C-CONS-PHASE     = 0
+   C-NR-DHW-INCL    = 1
+   C-CODE-VERSION   = 1
+   C-901-NUM-FLRS   = 6
+   C-901-BLDG-TYPE  = 15
+   ..
+
+
+$ ---------------------------------------------------------
+$              Site and Building Data
+$ ---------------------------------------------------------
+
+"Site Data" = SITE-PARAMETERS 
+   C-STATE          = 5
+   C-WEATHER-FILE   = *TMY2\LOS-ANCA.bin*
+   C-COUNTRY        = 1
+   C-901-LOCATION   = 259
+   ..
+
+"Building Data" = BUILD-PARAMETERS
+   HOLIDAYS         = "Standard US Holidays"
+   ..
+
+
+
+$ ---------------------------------------------------------
+$              Materials / Layers / Constructions
+$ ---------------------------------------------------------
+
+"IWall Cons Mat 2 (0.91)" = MATERIAL        
+   TYPE             = RESISTANCE
+   RESISTANCE       = 0.91
+   ..
+"AFlr Cons Mat 1 (2.8)" = MATERIAL        
+   TYPE             = RESISTANCE
+   RESISTANCE       = 2.8
+   ..
+"UWMat (B.E1.U1.M1)" = MATERIAL        
+   TYPE             = RESISTANCE
+   RESISTANCE       = 1.23763
+   ..
+"UWMat (B.E3.U5.M1)" = MATERIAL        
+   TYPE             = RESISTANCE
+   RESISTANCE       = 0.1
+   ..
+"Light Soil, Damp 12in" = MATERIAL        
+   TYPE             = PROPERTIES
+   THICKNESS        = 1
+   CONDUCTIVITY     = 0.5
+   DENSITY          = 100
+   SPECIFIC-HEAT    = 0.25
+   ..
+
+"EWall Cons Layers" = LAYERS          
+   MATERIAL         = ( "Stucco 1in (SC01)", "CMU MW 6in Hollow (CB26)" )
+   ..
+"Roof Cons Layers" = LAYERS          
+   MATERIAL         = ( "Blt-Up Roof 3/8in (BR01)", "Bldg Paper Felt (BP01)", 
+         "Conc HW 140lb 8in (CC05)" )
+   ..
+"Ceilg Cons Layers" = LAYERS          
+   MATERIAL         = ( "AcousTile 1/2in (AC02)" )
+   ..
+"IWall Cons Layers" = LAYERS          
+   MATERIAL         = ( "GypBd 1/2in (GP01)", "IWall Cons Mat 2 (0.91)", 
+         "GypBd 1/2in (GP01)" )
+   ..
+"IFlr Cons Layers" = LAYERS          
+   MATERIAL         = ( "Conc HW 140lb 8in (HF-C10)", 
+         "Conc LW 30lb 1.25in (CC32)", "Stone 1in (ST01)" )
+   ..
+"GFlr Cons Layers" = LAYERS          
+   MATERIAL         = ( "Conc HW 140lb 8in (HF-C10)", "Stone 1in (ST01)" )
+   ..
+"AFlr Cons Layers" = LAYERS          
+   MATERIAL         = ( "AFlr Cons Mat 1 (2.8)", "AcousTile 1/2in (AC02)" )
+   ..
+"UWLyrs (B.E1.U1)" = LAYERS          
+   MATERIAL         = ( "UWMat (B.E1.U1.M1)", "Light Soil, Damp 12in", 
+         "Conc HW 140lb 8in (HF-C10)" )
+   ..
+"UWLyrs (B.E3.U5)" = LAYERS          
+   MATERIAL         = ( "UWMat (B.E3.U5.M1)", "Light Soil, Damp 12in", 
+         "Conc HW 140lb 8in (HF-C10)" )
+   ..
+
+"EWall Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   ABSORPTANCE      = 0.4
+   ROUGHNESS        = 1
+   LAYERS           = "EWall Cons Layers"
+   ..
+"Roof Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   ABSORPTANCE      = 0.4
+   ROUGHNESS        = 1
+   LAYERS           = "Roof Cons Layers"
+   ..
+"Ceilg Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "Ceilg Cons Layers"
+   ..
+"IWall Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "IWall Cons Layers"
+   ..
+"IFlr Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "IFlr Cons Layers"
+   ..
+"GFlr Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "GFlr Cons Layers"
+   ..
+"AFlr Construction" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "AFlr Cons Layers"
+   ..
+"UWCons (B.E1.U1)" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "UWLyrs (B.E1.U1)"
+   ..
+"UWCons (B.E3.U5)" = CONSTRUCTION    
+   TYPE             = LAYERS
+   LAYERS           = "UWLyrs (B.E3.U5)"
+   ..
+
+
+$ ---------------------------------------------------------
+$              Glass Type Codes
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Glass Types
+$ ---------------------------------------------------------
+
+"Window Type #1 GT" = GLASS-TYPE      
+   TYPE             = GLASS-TYPE-CODE
+   GLASS-TYPE-CODE  = "1602"
+   C-PRODUCT-TYPE   = 1
+   C-FRAME-TYPE     = 0
+   ..
+"Door Type #1 GT" = GLASS-TYPE      
+   TYPE             = GLASS-TYPE-CODE
+   GLASS-TYPE-CODE  = "1001"
+   C-PRODUCT-TYPE   = 3
+   C-FRAME-TYPE     = 0
+   ..
+
+
+$ ---------------------------------------------------------
+$              Window Layers
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Lamps / Luminaries / Lighting Systems
+$ ---------------------------------------------------------
+
+
+
+
+
+$ ---------------------------------------------------------
+$              Day Schedules
+$ ---------------------------------------------------------
+
+"Bldg Occup S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0, &D, &D, &D, &D, 0.0131, 0.1659, 0.6431, 0.8717, 
+         0.9, 0.8434, 0.5606, 0.5493, 0.7869, 0.8887, 0.8943, 0.8434, 0.6648, 
+         0.3165, 0.1253, 0.099, 0.0939, 0.0596, 0.0091 )
+   ..
+"Bldg Occup S2 WEH" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0 )
+   ..
+"Bldg InsLt S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.05, &D, &D, &D, &D, 0.0827, 0.3204, 0.7384, 0.8854, 
+         0.9, &D, &D, &D, &D, &D, 0.8971, 0.8709, 0.7651, 0.5034, 0.3176, 
+         0.2386, 0.1203, 0.0807, 0.0547 )
+   ..
+"Bldg InsLt S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.05 )
+   ..
+"Bldg InsLt S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.015 )
+   ..
+"Bldg InsLt S2 HDD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0 )
+   ..
+"Bldg OffEq S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.12, &D, &D, &D, &D, 0.1335, 0.2786, 0.7017, 0.8799, 
+         0.9, 0.8766, 0.7596, 0.7549, 0.8532, 0.8953, 0.8978, 0.8777, 0.771, 
+         0.4365, 0.2454, 0.2029, 0.164, 0.1435, 0.1236 )
+   ..
+"Bldg OffEq S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.12 )
+   ..
+"Bldg OffEq S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.036 )
+   ..
+"Bldg OffEq S2 HDD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0 )
+   ..
+"Bldg Misc S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.2, &D, &D, &D, &D, 0.213, 0.351, 0.743, 0.886, 0.9, 
+         &D, &D, &D, &D, &D, &D, &D, 0.8409, 0.5186, 0.3219, 0.269, 0.211, 
+         0.2 )
+   ..
+"Bldg Misc S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.2 )
+   ..
+"Bldg Misc S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.06 )
+   ..
+"Bldg Misc S2 HDD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0 )
+   ..
+"Ext Lighting W1 All" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.6, &D, &D, &D, &D, &D, 0.3, 0.1, 0, &D, &D, &D, &D, 
+         &D, &D, &D, 0.15, 0.6, 0.9, &D, &D, &D, 0.8, 0.7 )
+   ..
+"Ext Lighting W2 All" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.6, &D, &D, &D, &D, 0.45, 0.15, 0, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, 0.25, 0.7, 0.9, &D, &D, 0.8, 0.7 )
+   ..
+"Ext Lighting W5 All" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 0.6, &D, &D, &D, &D, 0.4, 0.1, 0, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, &D, 0.4, 0.75, 0.9, 0.8, 0.7 )
+   ..
+"ZG0-S1 (VAVS) P-Inf S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   VALUES           = ( 1, &D, &D, &D, &D, 1.1159, 1.25, &D, 1.1206, 0.5197, 
+         1.25, 1.2325, 1.0628, 1.25, 0.6725, 0.5027, 1.0388, 1.25, &D, 
+         1.1675, 1, &D, 1.0349, 1.0096 )
+   ..
+"ZG0-S1 (VAVS) P-Inf S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   VALUES           = ( 1, &D, &D, &D, &D, &D, &D, 0.5, &D, &D, &D, &D, &D, 
+         &D, &D, 1 )
+   ..
+"ZG0-S1 (VAVS) P-Inf S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   VALUES           = ( 1 )
+   ..
+"ZG0-S1 (VAVS) P-Inf S2 HDD" = DAY-SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   VALUES           = ( 1, &D, &D, &D, &D, &D, &D, 0.5, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, &D, 1 )
+   ..
+"ZG0-S1 (VAVS) C-Inf S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 1, &D, &D, &D, &D, &D, &D, 0.5, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, &D, 1 )
+   ..
+"ZG0-S1 (VAVS) C-Inf S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 1, &D, &D, &D, &D, &D, &D, 0.5, &D, &D, &D, &D, &D, 
+         &D, &D, 1 )
+   ..
+"ZG0-S1 (VAVS) C-Inf S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = FRACTION
+   VALUES           = ( 1 )
+   ..
+"Sys1 (VAVS) Fan S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = ON/OFF/FLAG
+   VALUES           = ( 0, &D, &D, &D, &D, &D, &D, 1, &D, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, 0 )
+   ..
+"Sys1 (VAVS) Fan S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = ON/OFF/FLAG
+   VALUES           = ( 0, &D, &D, &D, &D, &D, &D, 1, &D, &D, &D, &D, &D, &D, 
+         &D, 0 )
+   ..
+"Sys1 (VAVS) Fan S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = ON/OFF/FLAG
+   VALUES           = ( 0 )
+   ..
+"Sys1 (VAVS) Cool S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 82, &D, &D, &D, &D, &D, &D, 75.2, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, &D, 82 )
+   ..
+"Sys1 (VAVS) Cool S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 82, &D, &D, &D, &D, &D, &D, 75.2, &D, &D, &D, &D, &D, 
+         &D, &D, 82 )
+   ..
+"Sys1 (VAVS) Cool S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 82 )
+   ..
+"Sys1 (VAVS) Heat S2 WD" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 64, &D, &D, &D, &D, &D, &D, 70, &D, &D, &D, &D, &D, 
+         &D, &D, &D, &D, &D, &D, 64 )
+   ..
+"Sys1 (VAVS) Heat S2 Sat" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 64, &D, &D, &D, &D, &D, &D, 70, &D, &D, &D, &D, &D, 
+         &D, &D, 64 )
+   ..
+"Sys1 (VAVS) Heat S2 Sun" = DAY-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   VALUES           = ( 64 )
+   ..
+"Sys1 (VAVS) (B) CRS-D" = DAY-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   OUTSIDE-HI       = 80
+   OUTSIDE-LO       = 60
+   SUPPLY-HI        = 65
+   SUPPLY-LO        = 55
+   ..
+"Sys1 (VAVS) (G) CRS-D" = DAY-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   OUTSIDE-HI       = 80
+   OUTSIDE-LO       = 60
+   SUPPLY-HI        = 65
+   SUPPLY-LO        = 55
+   ..
+"Sys1 (VAVS) (M) CRS-D" = DAY-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   OUTSIDE-HI       = 80
+   OUTSIDE-LO       = 60
+   SUPPLY-HI        = 65
+   SUPPLY-LO        = 55
+   ..
+"Sys1 (VAVS) (T) CRS-D" = DAY-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   OUTSIDE-HI       = 80
+   OUTSIDE-LO       = 60
+   SUPPLY-HI        = 65
+   SUPPLY-LO        = 55
+   ..
+"Cust 1 Elec Seas1 Day" = DAY-SCHEDULE-PD
+   TYPE             = FLAG
+   VALUES           = ( 1 )
+   ..
+"Hourly Report Day Sched" = DAY-SCHEDULE-PD
+   TYPE             = ON/OFF
+   VALUES           = ( 1 )
+   ..
+
+$ ---------------------------------------------------------
+$              Week Schedules
+$ ---------------------------------------------------------
+
+"Bldg Occup S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Bldg Occup S2 WD", &D, &D, &D, &D, 
+         "Bldg Occup S2 WEH", &D, &D, "Bldg Occup S2 WEH" )
+   ..
+"Bldg InsLt S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Bldg InsLt S2 WD", &D, &D, &D, &D, 
+         "Bldg InsLt S2 Sat", "Bldg InsLt S2 Sun", &D, "Bldg InsLt S2 HDD" )
+   ..
+"Bldg OffEq S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Bldg OffEq S2 WD", &D, &D, &D, &D, 
+         "Bldg OffEq S2 Sat", "Bldg OffEq S2 Sun", &D, "Bldg OffEq S2 HDD" )
+   ..
+"Bldg Misc S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Bldg Misc S2 WD", &D, &D, &D, &D, "Bldg Misc S2 Sat", 
+         "Bldg Misc S2 Sun", &D, "Bldg Misc S2 HDD" )
+   ..
+"Ext Lighting Wk1" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Ext Lighting W1 All" )
+   ..
+"Ext Lighting Wk2" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Ext Lighting W2 All" )
+   ..
+"Ext Lighting Wk5" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "Ext Lighting W5 All" )
+   ..
+"ZG0-S1 (VAVS) P-Inf S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   DAY-SCHEDULES    = ( "ZG0-S1 (VAVS) P-Inf S2 WD", &D, &D, &D, &D, 
+         "ZG0-S1 (VAVS) P-Inf S2 Sat", "ZG0-S1 (VAVS) P-Inf S2 Sun", &D, 
+         "ZG0-S1 (VAVS) P-Inf S2 HDD" )
+   ..
+"ZG0-S1 (VAVS) C-Inf S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = FRACTION
+   DAY-SCHEDULES    = ( "ZG0-S1 (VAVS) C-Inf S2 WD", &D, &D, &D, &D, 
+         "ZG0-S1 (VAVS) C-Inf S2 Sat", "ZG0-S1 (VAVS) C-Inf S2 Sun" )
+   ..
+"Sys1 (VAVS) Fan S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = ON/OFF/FLAG
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) Fan S2 WD", &D, &D, &D, &D, 
+         "Sys1 (VAVS) Fan S2 Sat", "Sys1 (VAVS) Fan S2 Sun" )
+   ..
+"Sys1 (VAVS) Cool S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) Cool S2 WD", &D, &D, &D, &D, 
+         "Sys1 (VAVS) Cool S2 Sat", "Sys1 (VAVS) Cool S2 Sun" )
+   ..
+"Sys1 (VAVS) Heat S2 Wk" = WEEK-SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) Heat S2 WD", &D, &D, &D, &D, 
+         "Sys1 (VAVS) Heat S2 Sat", "Sys1 (VAVS) Heat S2 Sun" )
+   ..
+"Sys1 (VAVS) (B) CRS-W" = WEEK-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) (B) CRS-D" )
+   ..
+"Sys1 (VAVS) (G) CRS-W" = WEEK-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) (G) CRS-D" )
+   ..
+"Sys1 (VAVS) (M) CRS-W" = WEEK-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) (M) CRS-D" )
+   ..
+"Sys1 (VAVS) (T) CRS-W" = WEEK-SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   DAY-SCHEDULES    = ( "Sys1 (VAVS) (T) CRS-D" )
+   ..
+"Cust 1 Elec Seas1 Week" = WEEK-SCHEDULE-PD
+   TYPE             = FLAG
+   DAY-SCHEDULES    = ( "Cust 1 Elec Seas1 Day" )
+   ..
+"Hourly Report Week Sched" = WEEK-SCHEDULE-PD
+   TYPE             = ON/OFF
+   DAY-SCHEDULES    = ( "Hourly Report Day Sched" )
+   ..
+
+$ ---------------------------------------------------------
+$              Annual Schedules
+$ ---------------------------------------------------------
+
+"Bldg Occup Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Bldg Occup S2 Wk", "Bldg Occup S2 Wk" )
+   ..
+"Bldg InsLt Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Bldg InsLt S2 Wk", "Bldg InsLt S2 Wk" )
+   ..
+"Bldg OffEq Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Bldg OffEq S2 Wk", "Bldg OffEq S2 Wk" )
+   ..
+"Bldg Misc Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Bldg Misc S2 Wk", "Bldg Misc S2 Wk" )
+   ..
+"Ext Lighting Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 )
+   DAY              = ( 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 )
+   WEEK-SCHEDULES   = ( "Ext Lighting Wk1", "Ext Lighting Wk2", 
+         "Ext Lighting Wk2", "Ext Lighting Wk2", "Ext Lighting Wk5", 
+         "Ext Lighting Wk5", "Ext Lighting Wk5", "Ext Lighting Wk1", 
+         "Ext Lighting Wk1", "Ext Lighting Wk1", "Ext Lighting Wk1", 
+         "Ext Lighting Wk1" )
+   ..
+"ZG0-S1 (VAVS) P-Inf Sch" = SCHEDULE-PD
+   TYPE             = MULTIPLIER
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "ZG0-S1 (VAVS) P-Inf S2 Wk", 
+         "ZG0-S1 (VAVS) P-Inf S2 Wk" )
+   ..
+"ZG0-S1 (VAVS) C-Inf Sch" = SCHEDULE-PD
+   TYPE             = FRACTION
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "ZG0-S1 (VAVS) C-Inf S2 Wk", 
+         "ZG0-S1 (VAVS) C-Inf S2 Wk" )
+   ..
+"Sys1 (VAVS) Fan Sch" = SCHEDULE-PD
+   TYPE             = ON/OFF/FLAG
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) Fan S2 Wk", "Sys1 (VAVS) Fan S2 Wk" )
+   ..
+"Sys1 (VAVS) Cool Sch" = SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) Cool S2 Wk", "Sys1 (VAVS) Cool S2 Wk" )
+   ..
+"Sys1 (VAVS) Heat Sch" = SCHEDULE-PD
+   TYPE             = TEMPERATURE
+   MONTH            = ( 8, 12 )
+   DAY              = ( 31, 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) Heat S2 Wk", "Sys1 (VAVS) Heat S2 Wk" )
+   ..
+"Sys1 (VAVS) (B) CRS" = SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) (B) CRS-W" )
+   ..
+"Sys1 (VAVS) (G) CRS" = SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) (G) CRS-W" )
+   ..
+"Sys1 (VAVS) (M) CRS" = SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) (M) CRS-W" )
+   ..
+"Sys1 (VAVS) (T) CRS" = SCHEDULE-PD
+   TYPE             = RESET-TEMP
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Sys1 (VAVS) (T) CRS-W" )
+   ..
+"Cust 1 Elec Season Sched" = SCHEDULE-PD
+   TYPE             = FLAG
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Cust 1 Elec Seas1 Week" )
+   ..
+"Hourly Report Schedule" = SCHEDULE-PD
+   TYPE             = ON/OFF
+   MONTH            = ( 12 )
+   DAY              = ( 31 )
+   WEEK-SCHEDULES   = ( "Hourly Report Week Sched" )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Polygons
+$ ---------------------------------------------------------
+
+"Floor Polygon" = POLYGON         
+   V1               = ( 153.2, 148.4 )
+   V2               = ( 22, 148.4 )
+   V3               = ( 22, 17.15 )
+   V4               = ( 153.2, 17.15 )
+   ..
+"Space Polygon 1" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.2, 0 )
+   V3               = ( 131.2, 131.25 )
+   V4               = ( -0, 131.25 )
+   ..
+"Space Polygon 2" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 32, 0 )
+   V3               = ( 32, 50 )
+   V4               = ( 0, 50 )
+   ..
+"Roof Polygon 1" = POLYGON         
+   V1               = ( 153.2, 148.4 )
+   V2               = ( 22, 148.4 )
+   V3               = ( 22, 17.15 )
+   V4               = ( 153.2, 17.15 )
+   ..
+"Roof Polygon 1 Wall 1" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.2, 0 )
+   V3               = ( 65.6, 67.91 )
+   ..
+"Roof Polygon 1 Wall 2" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.25, 0 )
+   V3               = ( 65.6, 67.91 )
+   ..
+"Roof Polygon 1 Wall 3" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.2, 0 )
+   V3               = ( 65.6, 67.96 )
+   ..
+"Roof Polygon 1 Wall 4" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.25, 0 )
+   V3               = ( 65.65, 67.91 )
+   ..
+"Space Polygon 1 - SMirro" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 131.25, -0 )
+   V3               = ( 131.25, 131.2 )
+   V4               = ( 0, 131.2 )
+   ..
+"Space Polygon 2 - SMirro" = POLYGON         
+   V1               = ( 0, 0 )
+   V2               = ( 50, 0 )
+   V3               = ( 50, 32 )
+   V4               = ( 0, 32 )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Wall Parameters
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Fixed and Building Shades
+$ ---------------------------------------------------------
+
+
+
+
+$ ---------------------------------------------------------
+$              Misc Cost Related Objects
+$ ---------------------------------------------------------
+
+
+
+"Baseline Data" = BASELINE        
+   ..
+
+
+$ *********************************************************
+$ **                                                     **
+$ **      Floors / Spaces / Walls / Windows / Doors      **
+$ **                                                     **
+$ *********************************************************
+
+"Below-Grade Flr" = FLOOR           
+   Z                = -12.5
+   AZIMUTH          = 180
+   POLYGON          = "Floor Polygon"
+   SHAPE            = POLYGON
+   FLOOR-HEIGHT     = 12.5
+   SPACE-HEIGHT     = 8.9
+   C-DIAGRAM-DATA   = *Detailed UI DiagData*
+   C-901-BLDG-TYPE  = 15
+   ..
+"East Perim Spc (B.E1)" = SPACE           
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   PEOPLE-HG-LAT    = 230.945
+   PEOPLE-HG-SENS   = 249.611
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.95, 1, 1 )
+   LIGHTING-W/AREA  = ( 0.80004 )
+   EQUIPMENT-W/AREA = ( 0.196, 0, 0.819 )
+   AREA/PERSON      = 101.7
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 3750.92, 7054.6, 3527.3, 375.09, 1640.8 )
+   C-OCC-TYPE       = ( 35, 13, 13, 12, 18, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Corridor (41%)*
+   C-901-OCC-TYPE   = ( 2, 15, 13, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"Flr (B.E1.I1)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "GFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"Ceiling (B.E1.I2)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (B.E3)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"South Wall (B.E1.U1)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E1.U1)"
+   LOCATION         = SPACE-V1
+   ..
+"East Wall (B.E1.U2)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E1.U1)"
+   LOCATION         = SPACE-V2
+   ..
+"North Wall (B.E1.U3)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E1.U1)"
+   LOCATION         = SPACE-V3
+   ..
+"West Wall (B.E1.U4)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E1.U1)"
+   LOCATION         = SPACE-V4
+   ..
+"Core Spc (B.C2)" = SPACE           
+   X                = 72
+   Y                = 56
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   PEOPLE-HG-LAT    = 230.945
+   PEOPLE-HG-SENS   = 249.611
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.95, 1, 1 )
+   LIGHTING-W/AREA  = ( 0.80004 )
+   EQUIPMENT-W/AREA = ( 0.196, 0, 0.819 )
+   AREA/PERSON      = 101.7
+   POLYGON          = "Space Polygon 2"
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 348.52, 655.48, 327.74, 34.85, 152.45 )
+   C-OCC-TYPE       = ( 35, 13, 13, 12, 18, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Corridor (41%)*
+   C-901-OCC-TYPE   = ( 2, 15, 13, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"Flr (B.C2.I3)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "GFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"North Wall (B.C2.I4)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (B.C2)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (B.C2.I5)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (B.C2)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (B.C2.I6)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (B.C2)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (B.C2.I7)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (B.C2)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Ceiling (B.C2.I8)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"East Perim Plnm (B.E3)" = SPACE           
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.00416994
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SUB-AREA       = ( 17220 )
+   ..
+"South Wall (B.E3.U5)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E3.U5)"
+   LOCATION         = SPACE-V1
+   ..
+"East Wall (B.E3.U6)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E3.U5)"
+   LOCATION         = SPACE-V2
+   ..
+"North Wall (B.E3.U7)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E3.U5)"
+   LOCATION         = SPACE-V3
+   ..
+"West Wall (B.E3.U8)" = UNDERGROUND-WALL
+   CONSTRUCTION     = "UWCons (B.E3.U5)"
+   LOCATION         = SPACE-V4
+   ..
+"Core Plnm (B.C4)" = SPACE           
+   X                = 72
+   Y                = 56
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   POLYGON          = "Space Polygon 2"
+   C-SUB-AREA       = ( 1600 )
+   ..
+"North Wall (B.C4.I9)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (B.C4.I10)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (B.C4.I11)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (B.C4.I12)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Ground Flr" = FLOOR           
+   AZIMUTH          = 180
+   POLYGON          = "Floor Polygon"
+   SHAPE            = POLYGON
+   FLOOR-HEIGHT     = 12.5
+   SPACE-HEIGHT     = 8.9
+   C-DIAGRAM-DATA   = *Detailed UI DiagData*
+   C-901-BLDG-TYPE  = 15
+   ..
+"East Perim Spc (G.E5)" = SPACE           
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.010309
+   PEOPLE-HG-LAT    = 210.776
+   PEOPLE-HG-SENS   = 249.477
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.93, 1, 1 )
+   LIGHTING-W/AREA  = ( 1.0946 )
+   EQUIPMENT-W/AREA = ( 0.362, 0, 1.636 )
+   AREA/PERSON      = 94.0202
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 5337.05, 4616.42, 5166, 533.71, 327.08 )
+   C-OCC-TYPE       = ( 35, 49, 31, 12, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Office (Open Plan) (31%)*
+   C-901-OCC-TYPE   = ( 2, 1, 5, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"South Wall (G.E5.E1)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"South Win (G.E5.E1.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39469
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (G.E5.E1.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6338
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39467
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Door (G.E5.E1.D1)" = WINDOW          
+   GLASS-TYPE       = "Door Type #1 GT"
+   FRAME-WIDTH      = 0.25
+   X                = 62.85
+   Y                = 0.25
+   HEIGHT           = 7.5
+   WIDTH            = 5.5
+   FRAME-CONDUCT    = 3.079
+   C-GLASS-DOOR     = 1
+   ..
+"East Wall (G.E5.E2)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"East Win (G.E5.E2.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39686
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (G.E5.E2.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6588
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39684
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Door (G.E5.E2.D1)" = WINDOW          
+   GLASS-TYPE       = "Door Type #1 GT"
+   FRAME-WIDTH      = 0.25
+   X                = 62.875
+   Y                = 0.25
+   HEIGHT           = 7.5
+   WIDTH            = 5.5
+   FRAME-CONDUCT    = 3.079
+   C-GLASS-DOOR     = 1
+   ..
+"North Wall (G.E5.E3)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"North Win (G.E5.E3.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39469
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (G.E5.E3.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6338
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39467
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Door (G.E5.E3.D1)" = WINDOW          
+   GLASS-TYPE       = "Door Type #1 GT"
+   FRAME-WIDTH      = 0.25
+   X                = 62.85
+   Y                = 0.25
+   HEIGHT           = 7.5
+   WIDTH            = 5.5
+   FRAME-CONDUCT    = 3.079
+   C-GLASS-DOOR     = 1
+   ..
+"West Wall (G.E5.E4)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"West Win (G.E5.E4.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39686
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (G.E5.E4.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6588
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.39684
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Door (G.E5.E4.D1)" = WINDOW          
+   GLASS-TYPE       = "Door Type #1 GT"
+   FRAME-WIDTH      = 0.25
+   X                = 62.875
+   Y                = 0.25
+   HEIGHT           = 7.5
+   WIDTH            = 5.5
+   FRAME-CONDUCT    = 3.079
+   C-GLASS-DOOR     = 1
+   ..
+"Flr (G.E5.I13)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (B.E3)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"Ceiling (G.E5.I14)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (G.E7)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"Core Spc (G.C6)" = SPACE           
+   X                = 72
+   Y                = 56
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   PEOPLE-HG-LAT    = 250
+   PEOPLE-HG-SENS   = 250
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 1, 1, 1 )
+   LIGHTING-W/AREA  = ( 1.5 )
+   EQUIPMENT-W/AREA = ( 0.2, 0, 0.5 )
+   AREA/PERSON      = 333.3
+   POLYGON          = "Space Polygon 2"
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 1600 )
+   C-OCC-TYPE       = ( 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Mechanical/Electrical Room*
+   C-901-OCC-TYPE   = ( 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"Flr (G.C6.I15)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (B.C4)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"North Wall (G.C6.I16)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (G.C6)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (G.C6.I17)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (G.C6)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (G.C6.I18)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (G.C6)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (G.C6.I19)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (G.C6)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Ceiling (G.C6.I20)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"East Perim Plnm (G.E7)" = SPACE           
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.00416994
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SUB-AREA       = ( 17220 )
+   ..
+"South Wall (G.E7.E5)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"East Wall (G.E7.E6)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"North Wall (G.E7.E7)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"West Wall (G.E7.E8)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"Core Plnm (G.C8)" = SPACE           
+   X                = 72
+   Y                = 56
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   POLYGON          = "Space Polygon 2"
+   C-SUB-AREA       = ( 1600 )
+   ..
+"North Wall (G.C8.I21)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (G.C8.I22)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (G.C8.I23)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (G.C8.I24)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Above-Grade Flrs" = FLOOR           
+   MULTIPLIER       = 3
+   Z                = 12.5
+   AZIMUTH          = 180
+   POLYGON          = "Floor Polygon"
+   SHAPE            = POLYGON
+   FLOOR-HEIGHT     = 12.5
+   SPACE-HEIGHT     = 8.9
+   C-DIAGRAM-DATA   = *Detailed UI DiagData*
+   C-901-BLDG-TYPE  = 15
+   ..
+"East Perim Spc (M.E9)" = SPACE           
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.010309
+   PEOPLE-HG-LAT    = 193.648
+   PEOPLE-HG-SENS   = 249.248
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.9, 1, 1 )
+   LIGHTING-W/AREA  = ( 1.00658 )
+   EQUIPMENT-W/AREA = ( 0.432, 0, 2.122 )
+   AREA/PERSON      = 91.409
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 7624.36, 6594.89, 762.44, 467.26 )
+   C-OCC-TYPE       = ( 35, 49, 12, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Office (Open Plan) (44%)*
+   C-901-OCC-TYPE   = ( 2, 1, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"South Wall (M.E9.E9)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"South Win (M.E9.E9.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.8758
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.5802
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (M.E9.E9.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Wall (M.E9.E10)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"East Win (M.E9.E10.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.9008
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6073
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (M.E9.E10.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Wall (M.E9.E11)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"North Win (M.E9.E11.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.8758
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.5802
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (M.E9.E11.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Wall (M.E9.E12)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"West Win (M.E9.E12.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.9008
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6073
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (M.E9.E12.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"Flr (M.E9.I25)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (G.E7)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"Ceiling (M.E9.I26)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (M.E11)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"Core Spc (M.C10)" = SPACE           
+   X                = 72
+   Y                = 56
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   PEOPLE-HG-LAT    = 230.945
+   PEOPLE-HG-SENS   = 249.611
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.95, 1, 1 )
+   LIGHTING-W/AREA  = ( 0.80004 )
+   EQUIPMENT-W/AREA = ( 0.196, 0, 0.819 )
+   AREA/PERSON      = 101.7
+   POLYGON          = "Space Polygon 2"
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 348.52, 655.48, 327.74, 34.85, 152.45 )
+   C-OCC-TYPE       = ( 35, 13, 13, 12, 18, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Corridor (41%)*
+   C-901-OCC-TYPE   = ( 2, 15, 13, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"Flr (M.C10.I27)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (G.C8)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"North Wall (M.C10.I28)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (M.C10)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (M.C10.I29)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (M.C10)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (M.C10.I30)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (M.C10)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (M.C10.I31)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (M.C10)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Ceiling (M.C10.I32)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"East Perim Plnm (M.E11)" = SPACE           
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.00416994
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SUB-AREA       = ( 17220 )
+   ..
+"South Wall (M.E11.E13)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"East Wall (M.E11.E14)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"North Wall (M.E11.E15)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"West Wall (M.E11.E16)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"Core Plnm (M.C12)" = SPACE           
+   X                = 72
+   Y                = 56
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   POLYGON          = "Space Polygon 2"
+   C-SUB-AREA       = ( 1600 )
+   ..
+"North Wall (M.C12.I33)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (M.C12.I34)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (M.C12.I35)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (M.C12.I36)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Top Abv-Grade Flr" = FLOOR           
+   Z                = 50
+   AZIMUTH          = 180
+   POLYGON          = "Floor Polygon"
+   SHAPE            = POLYGON
+   FLOOR-HEIGHT     = 12.5
+   SPACE-HEIGHT     = 8.9
+   C-DIAGRAM-DATA   = *Detailed UI DiagData*
+   C-901-BLDG-TYPE  = 15
+   ..
+"East Perim Spc (T.E13)" = SPACE           
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.010309
+   PEOPLE-HG-LAT    = 193.648
+   PEOPLE-HG-SENS   = 249.248
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.9, 1, 1 )
+   LIGHTING-W/AREA  = ( 1.00658 )
+   EQUIPMENT-W/AREA = ( 0.432, 0, 2.122 )
+   AREA/PERSON      = 91.409
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 7624.36, 6594.89, 762.44, 467.26 )
+   C-OCC-TYPE       = ( 35, 49, 12, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Office (Open Plan) (44%)*
+   C-901-OCC-TYPE   = ( 2, 1, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"South Wall (T.E13.E17)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"South Win (T.E13.E17.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.8758
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.5802
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"South Win (T.E13.E17.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Wall (T.E13.E18)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"East Win (T.E13.E18.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.9008
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6073
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"East Win (T.E13.E18.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Wall (T.E13.E19)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"North Win (T.E13.E19.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12801
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83235
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5367
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.241
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9454
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6497
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3541
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0584
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7628
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4671
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1715
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.8758
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.5802
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.2845
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 80.9889
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.6932
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.3976
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1019
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.806
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.511
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.215
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.919
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"North Win (T.E13.E19.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.624
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Wall (T.E13.E20)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"West Win (T.E13.E20.W1)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 1.12909
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W2)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 6.83562
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W3)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 12.5421
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W4)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 18.2487
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W5)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 23.9552
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W6)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 29.6617
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W7)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 35.3682
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W8)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 41.0747
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W9)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 46.7813
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W10)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 52.4878
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W11)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 58.1943
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W12)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 63.9008
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W13)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 69.6073
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W14)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 75.3139
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W15)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 81.0204
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W16)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 86.7269
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W17)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 92.4334
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W18)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 98.1399
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W19)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 103.846
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W20)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 109.553
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W21)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 115.26
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W22)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 120.966
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"West Win (T.E13.E20.W23)" = WINDOW          
+   GLASS-TYPE       = "Window Type #1 GT"
+   FRAME-WIDTH      = 0.245833
+   X                = 126.673
+   Y                = 1.22583
+   HEIGHT           = 7.37833
+   WIDTH            = 3.44833
+   FRAME-CONDUCT    = 3.079
+   ..
+"Flr (T.E13.I37)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (M.E11)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"Ceiling (T.E13.I38)" = INTERIOR-WALL   
+   NEXT-TO          = "East Perim Plnm (T.E15)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"Core Spc (T.C14)" = SPACE           
+   X                = 72
+   Y                = 56
+   SHAPE            = POLYGON
+   ZONE-TYPE        = CONDITIONED
+   PEOPLE-SCHEDULE  = "Bldg Occup Sch"
+   LIGHTING-SCHEDUL = ( "Bldg InsLt Sch" )
+   EQUIP-SCHEDULE   = ( "Bldg Misc Sch", "Bldg OffEq Sch", "Bldg OffEq Sch" )
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   PEOPLE-HG-LAT    = 230.945
+   PEOPLE-HG-SENS   = 249.611
+   EQUIP-LATENT     = ( 0, 0, 0 )
+   EQUIP-SENSIBLE   = ( 0.95, 1, 1 )
+   LIGHTING-W/AREA  = ( 0.80004 )
+   EQUIPMENT-W/AREA = ( 0.196, 0, 0.819 )
+   AREA/PERSON      = 101.7
+   POLYGON          = "Space Polygon 2"
+   C-SCHEDULE-TYPE  = 0
+   C-SUB-AREA       = ( 348.52, 655.48, 327.74, 34.85, 152.45 )
+   C-OCC-TYPE       = ( 35, 13, 13, 12, 18, 18 )
+   C-SUB-SRC-BTUH   = ( 0, 0, 0 )
+   C-SUB-SRC-KW     = ( 0, 0, 0 )
+   C-ACTIVITY-DESC  = *Corridor (41%)*
+   C-901-OCC-TYPE   = ( 2, 15, 13, 3, 19 )
+   C-901-SCH-TYPE   = 1
+   C-HTG-SYS-CLASS  = 2
+   ..
+"Flr (T.C14.I39)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (M.C12)"
+   CONSTRUCTION     = "IFlr Construction"
+   LOCATION         = BOTTOM
+   ..
+"North Wall (T.C14.I40)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (T.C14)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (T.C14.I41)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (T.C14)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (T.C14.I42)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (T.C14)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (T.C14.I43)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Spc (T.C14)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"Ceiling (T.C14.I44)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (T.C16)"
+   CONSTRUCTION     = "Ceilg Construction"
+   LOCATION         = TOP
+   ..
+"East Perim Plnm (T.E15)" = SPACE           
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) P-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.00416994
+   POLYGON          = "Space Polygon 1"
+   LOCATION         = FLOOR-V1
+   C-SUB-AREA       = ( 17220 )
+   ..
+"South Wall (T.E15.E21)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V1
+   SHADING-SURFACE  = YES
+   ..
+"East Wall (T.E15.E22)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V2
+   SHADING-SURFACE  = YES
+   ..
+"North Wall (T.E15.E23)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V3
+   SHADING-SURFACE  = YES
+   ..
+"West Wall (T.E15.E24)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "EWall Construction"
+   LOCATION         = SPACE-V4
+   SHADING-SURFACE  = YES
+   ..
+"UnderRf (T.E15.I45)" = INTERIOR-WALL   
+   NEXT-TO          = "Under Roof (T.15)"
+   CONSTRUCTION     = "AFlr Construction"
+   LOCATION         = TOP
+   ..
+"Core Plnm (T.C16)" = SPACE           
+   X                = 72
+   Y                = 56
+   Z                = 8.9
+   HEIGHT           = 3.6
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-SCHEDULE     = "ZG0-S1 (VAVS) C-Inf Sch"
+   INF-METHOD       = AIR-CHANGE
+   INF-FLOW/AREA    = 0.001
+   POLYGON          = "Space Polygon 2"
+   C-SUB-AREA       = ( 1600 )
+   ..
+"North Wall (T.C16.I46)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (T.C16)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V1
+   ..
+"West Wall (T.C16.I47)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (T.C16)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V2
+   ..
+"South Wall (T.C16.I48)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (T.C16)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V3
+   ..
+"East Wall (T.C16.I49)" = INTERIOR-WALL   
+   NEXT-TO          = "Core Plnm (T.C16)"
+   CONSTRUCTION     = "IWall Construction"
+   LOCATION         = SPACE-V4
+   ..
+"UnderRf (T.C16.I50)" = INTERIOR-WALL   
+   NEXT-TO          = "Under Roof (T.15)"
+   CONSTRUCTION     = "AFlr Construction"
+   LOCATION         = TOP
+   ..
+"Under Roof (T.15)" = SPACE           
+   X                = 0
+   Y                = 0
+   Z                = 12.5
+   AZIMUTH          = 0
+   HEIGHT           = 17.5775
+   VOLUME           = 101021
+   SHAPE            = POLYGON
+   ZONE-TYPE        = UNCONDITIONED
+   INF-METHOD       = AIR-CHANGE
+   AIR-CHANGES/HR   = 5
+   POLYGON          = "Roof Polygon 1"
+   LOCATION         = FLOOR-V1
+   ..
+"Roof (T.15.E25)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "Roof Construction"
+   X                = 153.2
+   Y                = 148.4
+   Z                = 0
+   AZIMUTH          = 0
+   TILT             = 15
+   POLYGON          = "Roof Polygon 1 Wall 1"
+   SHADING-SURFACE  = YES
+   ..
+"Roof (T.15.E26)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "Roof Construction"
+   X                = 22
+   Y                = 148.4
+   Z                = 0
+   AZIMUTH          = -90
+   TILT             = 15
+   POLYGON          = "Roof Polygon 1 Wall 2"
+   SHADING-SURFACE  = YES
+   ..
+"Roof (T.15.E27)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "Roof Construction"
+   X                = 22
+   Y                = 17.15
+   Z                = 0
+   AZIMUTH          = 180
+   TILT             = 15
+   POLYGON          = "Roof Polygon 1 Wall 3"
+   SHADING-SURFACE  = YES
+   ..
+"Roof (T.15.E28)" = EXTERIOR-WALL   
+   CONSTRUCTION     = "Roof Construction"
+   X                = 153.2
+   Y                = 17.15
+   Z                = 0
+   AZIMUTH          = 90
+   TILT             = 15
+   POLYGON          = "Roof Polygon 1 Wall 4"
+   SHADING-SURFACE  = YES
+   ..
+
+
+$ *********************************************************
+$ **                                                     **
+$ **                Performance Curves                   **
+$ **                                                     **
+$ *********************************************************
+
+"Variable Speed Drive FPLR" = CURVE-FIT       
+   TYPE             = QUADRATIC
+   INPUT-TYPE       = COEFFICIENTS
+   OUTPUT-MIN       = 0.1
+   OUTPUT-MAX       = 1
+   COEFFICIENTS     = ( 0.219762, -0.874784, 1.6526 )
+   ..
+
+$ *********************************************************
+$ **                                                     **
+$ **              Electric & Fuel Meters                 **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Electric Meters
+$ ---------------------------------------------------------
+
+"EM1" = ELEC-METER      
+   TYPE             = UTILITY
+   EXTERIOR-POWER   = ( 10.332 )
+   EXTERIOR-SCH     = ( "Ext Lighting Sch" )
+   EXTERIOR-EU      = ( EXT-USAGE )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Fuel Meters
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Master Meters
+$ ---------------------------------------------------------
+
+"MASTER-METERS 1" = MASTER-METERS   
+   MSTR-ELEC-METER  = "EM1"
+   MSTR-FUEL-METER  = "FM1"
+   ..
+
+
+$ *********************************************************
+$ **                                                     **
+$ **      HVAC Circulation Loops / Plant Equipment       **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Pumps
+$ ---------------------------------------------------------
+
+"CHW Loop Pump" = PUMP            
+   NUMBER           = 1
+   MOTOR-CLASS      = HI-EFF
+   ..
+"CW Loop Pump" = PUMP            
+   ..
+
+
+$ ---------------------------------------------------------
+$              Heat Exchangers
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Circulation Loops
+$ ---------------------------------------------------------
+
+"Chilled Water Loop" = CIRCULATION-LOOP
+   TYPE             = CHW
+   LOOP-DESIGN-DT   = 10
+   PIPE-HEAD        = 21.6
+   LOOP-OPERATION   = STANDBY
+   DESIGN-COOL-T    = 44
+   COOL-SETPT-CTRL  = FIXED
+   LOOP-PUMP        = "CHW Loop Pump"
+   ..
+"Condenser Water Loop" = CIRCULATION-LOOP
+   TYPE             = CW
+   LOOP-DESIGN-DT   = 10
+   PIPE-HEAD        = 21.6
+   COOL-SETPT-CTRL  = FIXED
+   COOL-SETPT-T     = 80
+   LOOP-SETPT-RNG   = 10
+   LOOP-PUMP        = "CW Loop Pump"
+   ..
+
+
+$ ---------------------------------------------------------
+$              Chillers
+$ ---------------------------------------------------------
+
+"Chiller1 (ElCentHerm)" = CHILLER         
+   TYPE             = ELEC-HERM-CENT
+   VARIABLE-SPEED   = NO
+   ELEC-INPUT-RATIO = 0.238095
+   CHW-LOOP         = "Chilled Water Loop"
+   CONDENSER-TYPE   = WATER-COOLED
+   CW-LOOP          = "Condenser Water Loop"
+   C-COP            = 4.2
+   ..
+
+
+$ ---------------------------------------------------------
+$              Boilers
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Domestic Water Heaters
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Heat Rejection
+$ ---------------------------------------------------------
+
+"Open Tower" = HEAT-REJECTION  
+   TYPE             = OPEN-TWR
+   NUMBER-OF-CELLS  = 1
+   ELEC-INPUT-RATIO = 0.0226254
+   CAPACITY-CTRL    = ONE-SPEED-FAN
+   FAN-OFF-AIR-FLOW = 0.01
+   CW-LOOP          = "Condenser Water Loop"
+   ..
+
+
+$ ---------------------------------------------------------
+$              Tower Free Cooling
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Photovoltaic Modules
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Electric Generators
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Thermal Storage
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Ground Loop Heat Exchangers
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Compliance DHW (residential dwelling units)
+$ ---------------------------------------------------------
+
+
+
+$ *********************************************************
+$ **                                                     **
+$ **            Steam & Chilled Water Meters             **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Steam Meters
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Chilled Water Meters
+$ ---------------------------------------------------------
+
+
+
+$ *********************************************************
+$ **                                                     **
+$ **               HVAC Systems / Zones                  **
+$ **                                                     **
+$ *********************************************************
+
+"Sys1 (VAVS) (B)" = SYSTEM          
+   TYPE             = VAVS
+   HEAT-SOURCE      = NONE
+   ZONE-HEAT-SOURCE = NONE
+   BASEBOARD-SOURCE = NONE
+   SIZING-RATIO     = 1.15
+   MIN-SUPPLY-T     = 55
+   COOL-RESET-SCH   = "Sys1 (VAVS) (B) CRS"
+   COOL-CONTROL     = RESET
+   ECONO-LIMIT-T    = 75
+   OA-CONTROL       = OA-TEMP
+   FAN-SCHEDULE     = "Sys1 (VAVS) Fan Sch"
+   FAN-CONTROL      = FAN-EIR-FPLR
+   SUPPLY-STATIC    = 3.5
+   SUPPLY-EFF       = 0.63
+   RETURN-STATIC    = 1.16667
+   RETURN-EFF       = 0.63
+   FAN-EIR-FPLR     = "Variable Speed Drive FPLR"
+   RETURN-FAN-CONTR = FAN-EIR-FPLR
+   RETURN-EIR-FPLR  = "Variable Speed Drive FPLR"
+   CHW-LOOP         = "Chilled Water Loop"
+   FURNACE-HIR      = 1.24067
+   C-AFUE           = 0.78
+   C-SF-MTR-TYPE    = 1
+   C-SUPP-FAN-TYPE  = 4
+   C-RF-MTR-TYPE    = 1
+   C-RET-FAN-TYPE   = 4
+   C-OSA-DMPR-CTRL  = 1
+   C-HTG-DUCT-LOCN  = *Ceiling Plenum*
+   C-HTG-DUCT-RVAL  = 7
+   C-CLG-DUCT-LOCN  = *Ceiling Plenum*
+   C-CLG-DUCT-RVAL  = 7
+   ..
+"East Perim Zn (B.E1)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 15.4854
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "East Perim Spc (B.E1)"
+   ..
+"Core Zn (B.C2)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 15.4854
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "Core Spc (B.C2)"
+   ..
+"East Perim Pl Zn (B.E3)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "East Perim Plnm (B.E3)"
+   ..
+"Core Pl Zn (B.C4)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "Core Plnm (B.C4)"
+   ..
+"Sys1 (VAVS) (G)" = SYSTEM          
+   TYPE             = VAVS
+   HEAT-SOURCE      = NONE
+   ZONE-HEAT-SOURCE = NONE
+   BASEBOARD-SOURCE = NONE
+   SIZING-RATIO     = 1.15
+   MIN-SUPPLY-T     = 55
+   COOL-RESET-SCH   = "Sys1 (VAVS) (G) CRS"
+   COOL-CONTROL     = RESET
+   ECONO-LIMIT-T    = 75
+   OA-CONTROL       = OA-TEMP
+   FAN-SCHEDULE     = "Sys1 (VAVS) Fan Sch"
+   FAN-CONTROL      = FAN-EIR-FPLR
+   SUPPLY-STATIC    = 3.5
+   SUPPLY-EFF       = 0.63
+   RETURN-STATIC    = 1.16667
+   RETURN-EFF       = 0.63
+   FAN-EIR-FPLR     = "Variable Speed Drive FPLR"
+   RETURN-FAN-CONTR = FAN-EIR-FPLR
+   RETURN-EIR-FPLR  = "Variable Speed Drive FPLR"
+   CHW-LOOP         = "Chilled Water Loop"
+   FURNACE-HIR      = 1.24067
+   C-AFUE           = 0.78
+   C-SF-MTR-TYPE    = 1
+   C-SUPP-FAN-TYPE  = 4
+   C-RF-MTR-TYPE    = 1
+   C-RET-FAN-TYPE   = 4
+   C-OSA-DMPR-CTRL  = 1
+   C-HTG-DUCT-LOCN  = *Ceiling Plenum*
+   C-HTG-DUCT-RVAL  = 7
+   C-CLG-DUCT-LOCN  = *Ceiling Plenum*
+   C-CLG-DUCT-RVAL  = 7
+   ..
+"East Perim Zn (G.E5)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 14.4129
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "East Perim Spc (G.E5)"
+   ..
+"Core Zn (G.C6)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 50
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "Core Spc (G.C6)"
+   ..
+"East Perim Pl Zn (G.E7)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "East Perim Plnm (G.E7)"
+   ..
+"Core Pl Zn (G.C8)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "Core Plnm (G.C8)"
+   ..
+"Sys1 (VAVS) (M)" = SYSTEM          
+   TYPE             = VAVS
+   HEAT-SOURCE      = NONE
+   ZONE-HEAT-SOURCE = NONE
+   BASEBOARD-SOURCE = NONE
+   SIZING-RATIO     = 1.15
+   MIN-SUPPLY-T     = 55
+   COOL-RESET-SCH   = "Sys1 (VAVS) (M) CRS"
+   COOL-CONTROL     = RESET
+   ECONO-LIMIT-T    = 75
+   OA-CONTROL       = OA-TEMP
+   FAN-SCHEDULE     = "Sys1 (VAVS) Fan Sch"
+   FAN-CONTROL      = FAN-EIR-FPLR
+   SUPPLY-STATIC    = 3.5
+   SUPPLY-EFF       = 0.63
+   RETURN-STATIC    = 1.16667
+   RETURN-EFF       = 0.63
+   FAN-EIR-FPLR     = "Variable Speed Drive FPLR"
+   RETURN-FAN-CONTR = FAN-EIR-FPLR
+   RETURN-EIR-FPLR  = "Variable Speed Drive FPLR"
+   CHW-LOOP         = "Chilled Water Loop"
+   FURNACE-HIR      = 1.24067
+   C-NUM-OF-UNITS   = 3
+   C-AFUE           = 0.78
+   C-SF-MTR-TYPE    = 1
+   C-SUPP-FAN-TYPE  = 4
+   C-RF-MTR-TYPE    = 1
+   C-RET-FAN-TYPE   = 4
+   C-OSA-DMPR-CTRL  = 1
+   C-HTG-DUCT-LOCN  = *Ceiling Plenum*
+   C-HTG-DUCT-RVAL  = 7
+   C-CLG-DUCT-LOCN  = *Ceiling Plenum*
+   C-CLG-DUCT-RVAL  = 7
+   ..
+"East Perim Zn (M.E9)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 14.1565
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "East Perim Spc (M.E9)"
+   ..
+"Core Zn (M.C10)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 15.4854
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "Core Spc (M.C10)"
+   ..
+"East Perim Pl Zn (M.E11)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "East Perim Plnm (M.E11)"
+   ..
+"Core Pl Zn (M.C12)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "Core Plnm (M.C12)"
+   ..
+"Sys1 (VAVS) (T)" = SYSTEM          
+   TYPE             = VAVS
+   HEAT-SOURCE      = NONE
+   ZONE-HEAT-SOURCE = NONE
+   BASEBOARD-SOURCE = NONE
+   SIZING-RATIO     = 1.15
+   MIN-SUPPLY-T     = 55
+   COOL-RESET-SCH   = "Sys1 (VAVS) (T) CRS"
+   COOL-CONTROL     = RESET
+   ECONO-LIMIT-T    = 75
+   OA-CONTROL       = OA-TEMP
+   FAN-SCHEDULE     = "Sys1 (VAVS) Fan Sch"
+   FAN-CONTROL      = FAN-EIR-FPLR
+   SUPPLY-STATIC    = 3.5
+   SUPPLY-EFF       = 0.63
+   RETURN-STATIC    = 1.16667
+   RETURN-EFF       = 0.63
+   FAN-EIR-FPLR     = "Variable Speed Drive FPLR"
+   RETURN-FAN-CONTR = FAN-EIR-FPLR
+   RETURN-EIR-FPLR  = "Variable Speed Drive FPLR"
+   CHW-LOOP         = "Chilled Water Loop"
+   FURNACE-HIR      = 1.24067
+   C-AFUE           = 0.78
+   C-SF-MTR-TYPE    = 1
+   C-SUPP-FAN-TYPE  = 4
+   C-RF-MTR-TYPE    = 1
+   C-RET-FAN-TYPE   = 4
+   C-OSA-DMPR-CTRL  = 1
+   C-HTG-DUCT-LOCN  = *Ceiling Plenum*
+   C-HTG-DUCT-RVAL  = 7
+   C-CLG-DUCT-LOCN  = *Ceiling Plenum*
+   C-CLG-DUCT-RVAL  = 7
+   ..
+"Roof Zone 1" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "Under Roof (T.15)"
+   ..
+"East Perim Zn (T.E13)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 14.1565
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "East Perim Spc (T.E13)"
+   ..
+"Core Zn (T.C14)" = ZONE            
+   TYPE             = CONDITIONED
+   MIN-FLOW-RATIO   = 0.2
+   FLOW/AREA        = 2
+   OA-FLOW/PER      = 15.4854
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 75
+   COOL-TEMP-SCH    = "Sys1 (VAVS) Cool Sch"
+   SIZING-OPTION    = ADJUST-LOADS
+   TERMINAL-TYPE    = SVAV
+   SPACE            = "Core Spc (T.C14)"
+   ..
+"East Perim Pl Zn (T.E15)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "East Perim Plnm (T.E15)"
+   ..
+"Core Pl Zn (T.C16)" = ZONE            
+   TYPE             = UNCONDITIONED
+   DESIGN-HEAT-T    = 72
+   DESIGN-COOL-T    = 80
+   SIZING-OPTION    = ADJUST-LOADS
+   SPACE            = "Core Plnm (T.C16)"
+   ..
+
+
+$ *********************************************************
+$ **                                                     **
+$ **                Metering & Misc HVAC                 **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Equipment Controls
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Load Management
+$ ---------------------------------------------------------
+
+
+
+$ *********************************************************
+$ **                                                     **
+$ **                    Utility Rates                    **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Ratchets
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Block Charges
+$ ---------------------------------------------------------
+
+
+
+$ ---------------------------------------------------------
+$              Utility Rates
+$ ---------------------------------------------------------
+
+"Custom Elec Rate" = UTILITY-RATE    
+   TYPE             = ELECTRICITY
+   ..
+
+
+$ *********************************************************
+$ **                                                     **
+$ **                 Output Reporting                    **
+$ **                                                     **
+$ *********************************************************
+
+$ ---------------------------------------------------------
+$              Loads Non-Hourly Reporting
+$ ---------------------------------------------------------
+
+LOADS-REPORT    
+   VERIFICATION     = ( ALL-VERIFICATION )
+   SUMMARY          = ( ALL-SUMMARY )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Systems Non-Hourly Reporting
+$ ---------------------------------------------------------
+
+SYSTEMS-REPORT  
+   VERIFICATION     = ( ALL-VERIFICATION )
+   SUMMARY          = ( ALL-SUMMARY )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Plant Non-Hourly Reporting
+$ ---------------------------------------------------------
+
+PLANT-REPORT    
+   VERIFICATION     = ( ALL-VERIFICATION )
+   SUMMARY          = ( ALL-SUMMARY )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Economics Non-Hourly Reporting
+$ ---------------------------------------------------------
+
+ECONOMICS-REPORT
+   VERIFICATION     = ( ALL-VERIFICATION )
+   SUMMARY          = ( ALL-SUMMARY )
+   ..
+
+
+$ ---------------------------------------------------------
+$              Hourly Reporting
+$ ---------------------------------------------------------
+
+"EM1 Hourly Report Block" = REPORT-BLOCK    
+   VARIABLE-TYPE    = "EM1"
+   VARIABLE-LIST    = ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20 )
+   ..
+"FM1 Hourly Report Block" = REPORT-BLOCK    
+   VARIABLE-TYPE    = "FM1"
+   VARIABLE-LIST    = ( 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 20 )
+   ..
+
+"Hourly Report" = HOURLY-REPORT   
+   LIBRARY-ENTRY "Hourly Report"
+   ..
+
+
+$ ---------------------------------------------------------
+$              THE END
+$ ---------------------------------------------------------
+
+END ..
+COMPUTE ..
+STOP ..
