@@ -107,9 +107,12 @@ Typical project files included in this repository:
 project/
 │
 ├── model/
-│   ├── office_building.pd2
-│   ├── office_building.inp
-│   └── office_building.sim
+│   ├── LKA_colombo_ratmalana.BIN
+│   ├── office_building_colombo.inp
+│   └── office_building_colombo.sim
+│   └── office_building_colombo.pdl
+│   └── typical_floor.dwg
+│   └── typical_floor.dxf
 │
 ├── reports/
 │   ├── annual_energy_consumption.pdf
